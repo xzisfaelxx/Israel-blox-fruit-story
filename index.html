@@ -1,249 +1,316 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Israel Store - Entrega Automática</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom, #0b3d0b, #0f4d0f);
-      color: #fff;
-      margin: 0;
-      padding-bottom: 140px; /* Espaço para o rodapé fixo */
-    }
-    header {
-      background: #0e5c0e;
-      padding: 2rem 1rem;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      color: #cfffcc;
-      text-shadow: 1px 1px 2px #000;
-    }
-    header p {
-      margin-top: 0.5rem;
-      font-size: 1.1rem;
-      color: #e0ffe0;
-    }
-    .catalogo {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      padding: 2rem 1rem;
-    }
-    .secao {
-      margin-top: 2rem;
-    }
-    .secao h2 {
-      text-align: center;
-      color: #bfffbf;
-      margin-bottom: 1rem;
-      border-bottom: 2px solid #4caf50;
-      padding-bottom: 0.5rem;
-    }
-    .produto {
-      background: #196219;
-      padding: 1rem;
-      border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 0 10px #000;
-      transition: transform 0.2s;
-    }
-    .produto:hover {
-      transform: scale(1.03);
-    }
-    .produto h3 {
-      margin: 0.5rem 0;
-    }
-    .produto p.price {
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-      font-weight: bold;
-      color: #aaffaa;
-    }
-    .produto button {
-      background: #4caf50;
-      color: #0b3d0b;
-      border: none;
-      padding: 0.6rem;
-      font-weight: bold;
-      font-size: 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      width: 100%;
-    }
-    .produto button:hover {
-      background: #3c8c3c;
-    }
-    .entrega {
-      background: #145214;
-      margin: 1rem auto;
-      padding: 1rem;
-      border-radius: 8px;
-      text-align: center;
-      max-width: 600px;
-      display: none;
-    }
-    .entrega h3 {
-      margin-bottom: 0.5rem;
-    }
-    #infoEntrega {
-      background: #0f4f0f;
-      padding: 0.8rem;
-      border-radius: 6px;
-      font-family: monospace;
-      font-size: 1.1rem;
-      white-space: pre-wrap;
-    }
-    footer {
-      background: #145214;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 15px 1rem;
-      text-align: center;
-      color: #c4f4c4;
-      box-shadow: 0 -4px 10px rgba(0,0,0,0.4);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      font-size: 1rem;
-      user-select: none;
-      z-index: 100;
-    }
-    footer img {
-      width: 100px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px #0a2a0a;
-      cursor: pointer;
-    }
-    .pix-key {
-      cursor: pointer;
-      background: #0e5c0e;
-      padding: 5px 10px;
-      border-radius: 8px;
-      font-weight: bold;
-      user-select: all;
-      transition: background 0.3s;
-    }
-    .pix-key:hover {
-      background: #137513;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Israel Store - Loja de Contas e Itens</title>
+<style>
+  /* Reset básico */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background: #0b3d0b;
+    color: #e0ffe0;
+    min-height: 100vh;
+    padding-top: 60px; /* espaço para o menu fixo */
+  }
+  header {
+    background: #145214;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    z-index: 1000;
+  }
+  header h1 {
+    font-size: 1.8rem;
+    color: #a5d6a7;
+    user-select: none;
+  }
+  nav {
+    margin-left: auto;
+  }
+  nav a {
+    color: #a5d6a7;
+    text-decoration: none;
+    margin-left: 1.2rem;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  nav a:hover {
+    color: #c8e6c9;
+  }
+
+  section {
+    max-width: 1100px;
+    margin: 2rem auto 4rem auto;
+    padding: 0 1rem;
+  }
+  section h2 {
+    border-bottom: 3px solid #4caf50;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: #bbf7bb;
+    user-select: none;
+  }
+
+  .produtos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 1.2rem;
+  }
+  .produto {
+    background: #196219;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px #0a2a0a;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s;
+  }
+  .produto:hover {
+    transform: scale(1.03);
+  }
+  .produto img {
+    width: 100%;
+    object-fit: cover;
+    height: 150px;
+  }
+  .produto-info {
+    padding: 1rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .produto-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+    color: #d4f4d4;
+    user-select: none;
+  }
+  .produto-info p.price {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #aaffaa;
+    margin-bottom: 1rem;
+    user-select: none;
+  }
+  .produto-info button {
+    background: #4caf50;
+    border: none;
+    padding: 0.7rem;
+    color: #0b3d0b;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.3s;
+    margin-top: auto;
+  }
+  .produto-info button:hover {
+    background: #3c8c3c;
+  }
+
+  /* Caixa de entrega automática */
+  #entregaBox {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #145214;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 15px #0a2a0a;
+    max-width: 350px;
+    display: none;
+    color: #d1f0d1;
+    user-select: all;
+    font-family: monospace;
+    font-size: 1.1rem;
+    z-index: 1500;
+  }
+
+  footer {
+    background: #145214;
+    text-align: center;
+    padding: 1.2rem 1rem;
+    color: #c4f4c4;
+    position: fixed;
+    bottom: 0;
+    left: 0; right: 0;
+    user-select: none;
+  }
+  footer img {
+    width: 90px;
+    border-radius: 12px;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    box-shadow: 0 0 15px #0a2a0a;
+  }
+  footer .pix-key {
+    margin-top: 0.3rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  footer .pix-key:hover {
+    color: #7ce07c;
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1><i class="bi bi-cart4"></i> Israel Store</h1>
-    <p>Compra 100% automática de contas Roblox, Robux e Diamantes Free Fire</p>
-  </header>
 
-  <section class="secao">
-    <h2><i class="bi bi-person-badge"></i> Contas Blox Fruits</h2>
-    <div class="catalogo">
-      <div class="produto">
+<header>
+  <h1>Israel Store</h1>
+  <nav>
+    <a href="#bloxfruits">Blox Fruits</a>
+    <a href="#robux">Robux</a>
+    <a href="#freefire">Free Fire</a>
+  </nav>
+</header>
+
+<section id="bloxfruits">
+  <h2>Blox Fruits</h2>
+  <div class="produtos">
+    <div class="produto">
+      <img src="https://i.imgur.com/0nZXzFb.jpg" alt="Conta Level 2450 - Dragon" />
+      <div class="produto-info">
         <h3>Conta Level 2450 - Dragon</h3>
         <p class="price">R$ 80,00</p>
         <button onclick="entregar('Usuário: Cleiton\\nSenha: 1234')">Comprar Agora</button>
       </div>
-      <div class="produto">
+    </div>
+    <div class="produto">
+      <img src="https://i.imgur.com/Qh0nMBW.jpg" alt="Conta Level 2300 - Leopard" />
+      <div class="produto-info">
         <h3>Conta Level 2300 - Leopard</h3>
         <p class="price">R$ 75,00</p>
         <button onclick="entregar('Usuário: Daniel\\nSenha: 5678')">Comprar Agora</button>
       </div>
-      <div class="produto">
+    </div>
+    <div class="produto">
+      <img src="https://i.imgur.com/UTcgr2x.jpg" alt="Conta Level 2200 - Venom" />
+      <div class="produto-info">
         <h3>Conta Level 2200 - Venom</h3>
         <p class="price">R$ 70,00</p>
         <button onclick="entregar('Usuário: Lucas\\nSenha: 91011')">Comprar Agora</button>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="secao">
-    <h2><i class="bi bi-box"></i> Robux</h2>
-    <div class="catalogo">
-      <div class="produto">
+<section id="robux">
+  <h2>Robux</h2>
+  <div class="produtos">
+    <div class="produto">
+      <img src="https://i.imgur.com/qv5Om4E.png" alt="500 Robux" />
+      <div class="produto-info">
         <h3>500 Robux</h3>
         <p class="price">R$ 40,00</p>
         <button onclick="entregar('Código Robux: ROBUX-500-GRT98')">Comprar Agora</button>
       </div>
-      <div class="produto">
+    </div>
+    <div class="produto">
+      <img src="https://i.imgur.com/qv5Om4E.png" alt="1000 Robux" />
+      <div class="produto-info">
         <h3>1000 Robux</h3>
         <p class="price">R$ 75,00</p>
         <button onclick="entregar('Código Robux: ROBUX-1000-HY72J')">Comprar Agora</button>
       </div>
-      <div class="produto">
+    </div>
+    <div class="produto">
+      <img src="https://i.imgur.com/qv5Om4E.png" alt="2000 Robux" />
+      <div class="produto-info">
         <h3>2000 Robux</h3>
         <p class="price">R$ 140,00</p>
         <button onclick="entregar('Código Robux: ROBUX-2000-XY98P')">Comprar Agora</button>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="secao">
-    <h2><i class="bi bi-gem"></i> Diamantes Free Fire</h2>
-    <div class="catalogo">
-      <div class="produto">
+<section id="freefire">
+  <h2>Diamantes Free Fire</h2>
+  <div class="produtos">
+    <div class="produto">
+      <img src="https://i.imgur.com/1m9h60B.png" alt="1000 Diamantes" />
+      <div class="produto-info">
         <h3>1000 Diamantes</h3>
         <p class="price">R$ 60,00</p>
         <button onclick="entregar('ID Free Fire: 99887766')">Comprar Agora</button>
       </div>
-      <div class="produto">
+    </div>
+    <div class="produto">
+      <img src="https://i.imgur.com/1m9h60B.png" alt="2000 Diamantes" />
+      <div class="produto-info">
         <h3>2000 Diamantes</h3>
         <p class="price">R$ 115,00</p>
         <button onclick="entregar('ID Free Fire: 44556677')">Comprar Agora</button>
       </div>
-      <div class="produto">
+    </div>
+    <div class="produto">
+      <img src="https://i.imgur.com/1m9h60B.png" alt="5000 Diamantes" />
+      <div class="produto-info">
         <h3>5000 Diamantes</h3>
         <p class="price">R$ 275,00</p>
         <button onclick="entregar('ID Free Fire: 11223344')">Comprar Agora</button>
       </div>
     </div>
-  </section>
-
-  <div class="entrega" id="entregaBox">
-    <h3><i class="bi bi-gift"></i> Entrega Automática</h3>
-    <p>Seu produto foi liberado automaticamente:</p>
-    <div id="infoEntrega"></div>
-    <p style="margin-top:1rem;"><i class="bi bi-emoji-smile"></i> Obrigado pela compra!</p>
   </div>
+</section>
 
-  <footer>
-    <div>
-      <p>Pix para pagamento:</p>
-      <img
-        src="https://chart.googleapis.com/chart?cht=qr&chl=pix:israel@pix.com.br&chs=150x150&choe=UTF-8&chld=L|2"
-        alt="QR Code Pix"
-        title="Clique para copiar a chave Pix"
-        onclick="copyPixKey()"
-      />
-    </div>
-    <div class="pix-key" onclick="copyPixKey()" title="Clique para copiar a chave Pix">
-      israel@pix.com.br
-    </div>
-  </footer>
+<div id="entregaBox"></div>
 
-  <script>
-    function entregar(dados) {
-      const entregaBox = document.getElementById('entregaBox');
-      const infoEntrega = document.getElementById('infoEntrega');
-      entregaBox.style.display = 'block';
-      infoEntrega.textContent = dados;
-      entregaBox.scrollIntoView({behavior: 'smooth'});
-    }
+<footer>
+  <p>Pix para pagamento:</p>
+  <img
+    src="https://chart.googleapis.com/chart?cht=qr&chl=pix:israeldasilvasantos355@gmail.com&chs=150x150&choe=UTF-8&chld=L|2"
+    alt="QR Code Pix"
+    title="Clique para copiar a chave Pix"
+    onclick="copyPixKey()"
+    style="cursor:pointer"
+  />
+  <div class="pix-key" onclick="copyPixKey()" title="Clique para copiar a chave Pix" style="cursor:pointer;">
+    israeldasilvasantos355@gmail.com
+  </div>
+</footer>
 
-    function copyPixKey() {
-      const pixKey = 'israel@pix.com.br';
-      navigator.clipboard.writeText(pixKey).then(() => {
-        alert('Chave Pix copiada: ' + pixKey);
-      });
-    }
-  </script>
+<script>
+  function entregar(dados) {
+    const entregaBox = document.getElementById('entregaBox');
+    entregaBox.style.display = 'block';
+    entregaBox.style.position = 'fixed';
+    entregaBox.style.bottom = '80px';
+    entregaBox.style.left = '50%';
+    entregaBox.style.transform = 'translateX(-50%)';
+    entregaBox.style.background = '#145214';
+    entregaBox.style.padding = '1rem 1.5rem';
+    entregaBox.style.borderRadius = '8px';
+    entregaBox.style.boxShadow = '0 0 15px #0a2a0a';
+    entregaBox.style.color = '#d1f0d1';
+    entregaBox.style.fontFamily = 'monospace';
+    entregaBox.style.fontSize = '1.1rem';
+    entregaBox.style.userSelect = 'all';
+    entregaBox.innerText = 'Seu produto foi entregue automaticamente:\n\n' + dados;
+    setTimeout(() => {
+      entregaBox.style.display = 'none';
+    }, 12000); // Oculta após 12 segundos
+  }
+
+  function copyPixKey() {
+    const pixKey = 'israeldasilvasantos355@gmail.com';
+    navigator.clipboard.writeText(pixKey).then(() => {
+      alert('Chave Pix copiada: ' + pixKey);
+    });
+  }
+</script>
+
 </body>
 </html>
