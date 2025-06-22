@@ -3,165 +3,269 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Israel Store - Loja de Contas e Itens</title>
+<title>Israel Store - BloxShop Style</title>
 <style>
   /* Reset básico */
   * {
     margin: 0; padding: 0; box-sizing: border-box;
   }
   body {
-    font-family: Arial, sans-serif;
-    background: #0b3d0b;
-    color: #e0ffe0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0d3a0d;
+    color: #d1f0d1;
     min-height: 100vh;
-    padding-top: 60px; /* espaço para o menu fixo */
   }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  /* Menu fixo */
   header {
-    background: #145214;
     position: fixed;
     top: 0; left: 0; right: 0;
+    background: #145214;
     height: 60px;
     display: flex;
     align-items: center;
     padding: 0 1.5rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.7);
     z-index: 1000;
   }
   header h1 {
-    font-size: 1.8rem;
     color: #a5d6a7;
+    font-weight: 900;
+    font-size: 1.8rem;
     user-select: none;
   }
   nav {
     margin-left: auto;
   }
   nav a {
+    font-weight: 700;
+    margin-left: 1.5rem;
+    font-size: 1rem;
     color: #a5d6a7;
-    text-decoration: none;
-    margin-left: 1.2rem;
-    font-weight: bold;
-    transition: color 0.3s;
+    transition: color 0.3s ease;
   }
   nav a:hover {
     color: #c8e6c9;
   }
-
-  section {
+  /* Conteúdo principal */
+  main {
+    padding: 80px 1rem 100px;
     max-width: 1100px;
-    margin: 2rem auto 4rem auto;
-    padding: 0 1rem;
+    margin: 0 auto;
   }
-  section h2 {
+  h2 {
     border-bottom: 3px solid #4caf50;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.3rem;
     margin-bottom: 1rem;
-    font-weight: 700;
-    color: #bbf7bb;
     user-select: none;
   }
-
-  .produtos {
+  /* Grid produtos */
+  .produtos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
     gap: 1.2rem;
   }
-  .produto {
+  .produto-card {
     background: #196219;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 0 10px #0a2a0a;
+    box-shadow: 0 0 12px #0a2a0a;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    transition: transform 0.2s;
+    transition: transform 0.2s ease;
   }
-  .produto:hover {
-    transform: scale(1.03);
+  .produto-card:hover {
+    transform: scale(1.05);
   }
-  .produto img {
+  .produto-card img {
     width: 100%;
     object-fit: cover;
-    height: 150px;
+    height: 160px;
+    border-bottom: 3px solid #4caf50;
   }
   .produto-info {
-    padding: 1rem;
     flex-grow: 1;
+    padding: 1rem;
+    color: #d0f0d0;
     display: flex;
     flex-direction: column;
   }
   .produto-info h3 {
+    margin-bottom: 0.5rem;
+    font-weight: 700;
     font-size: 1.2rem;
-    margin-bottom: 0.3rem;
-    color: #d4f4d4;
     user-select: none;
   }
-  .produto-info p.price {
+  .produto-info .price {
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 800;
     color: #aaffaa;
     margin-bottom: 1rem;
     user-select: none;
   }
   .produto-info button {
+    margin-top: auto;
     background: #4caf50;
     border: none;
     padding: 0.7rem;
+    font-weight: 900;
     color: #0b3d0b;
-    font-weight: bold;
-    font-size: 1rem;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
+    transition: background 0.3s ease;
     user-select: none;
-    transition: background 0.3s;
-    margin-top: auto;
   }
   .produto-info button:hover {
     background: #3c8c3c;
   }
-
-  /* Caixa de entrega automática */
-  #entregaBox {
+  /* Carrinho */
+  #cart {
     position: fixed;
-    bottom: 80px;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 60px; right: 0;
+    width: 320px;
+    max-height: calc(100vh - 60px);
     background: #145214;
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 0 15px #0a2a0a;
-    max-width: 350px;
-    display: none;
-    color: #d1f0d1;
-    user-select: all;
-    font-family: monospace;
-    font-size: 1.1rem;
-    z-index: 1500;
+    box-shadow: -3px 0 15px #0a2a0a;
+    overflow-y: auto;
+    padding: 1rem;
+    z-index: 1100;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
   }
-
-  footer {
-    background: #145214;
-    text-align: center;
-    padding: 1.2rem 1rem;
-    color: #c4f4c4;
-    position: fixed;
-    bottom: 0;
-    left: 0; right: 0;
+  #cart.open {
+    transform: translateX(0);
+  }
+  #cart h2 {
+    margin-bottom: 1rem;
+    color: #bbf7bb;
+  }
+  #cart ul {
+    list-style: none;
+    max-height: 60vh;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+  }
+  #cart li {
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #2d602d;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #cart li span {
     user-select: none;
   }
-  footer img {
-    width: 90px;
-    border-radius: 12px;
-    margin-top: 0.5rem;
-    cursor: pointer;
-    box-shadow: 0 0 15px #0a2a0a;
-  }
-  footer .pix-key {
-    margin-top: 0.3rem;
+  #cart li button.remove {
+    background: #a33;
+    border: none;
+    color: white;
     font-weight: bold;
+    border-radius: 6px;
+    padding: 0.2rem 0.5rem;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.3s ease;
+  }
+  #cart li button.remove:hover {
+    background: #d55;
+  }
+  #cart .total {
+    font-weight: 800;
+    font-size: 1.2rem;
+    user-select: none;
+    margin-bottom: 1rem;
+    color: #aaffaa;
+  }
+  #cart button#closeCart {
+    background: #4caf50;
+    border: none;
+    width: 100%;
+    padding: 0.7rem;
+    font-weight: 900;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #0b3d0b;
+    user-select: none;
+    transition: background 0.3s ease;
+  }
+  #cart button#closeCart:hover {
+    background: #3c8c3c;
+  }
+  /* Botão abrir carrinho */
+  #openCartBtn {
+    position: fixed;
+    top: 65px;
+    right: 10px;
+    background: #4caf50;
+    color: #0b3d0b;
+    border: none;
+    padding: 0.7rem 1.1rem;
+    font-weight: 900;
+    border-radius: 8px;
+    cursor: pointer;
+    user-select: none;
+    z-index: 1200;
+    box-shadow: 0 0 10px #3c8c3c;
+  }
+  #openCartBtn:hover {
+    background: #3c8c3c;
+  }
+  /* QR Code e Pix */
+  #pixPayment {
+    margin-top: 1rem;
+    text-align: center;
+    color: #aaffaa;
+    user-select: none;
+  }
+  #pixPayment img {
+    margin-top: 0.7rem;
+    width: 150px;
+    border-radius: 12px;
+    box-shadow: 0 0 12px #0a2a0a;
     cursor: pointer;
   }
-  footer .pix-key:hover {
+  #pixPayment .pixKey {
+    margin-top: 0.5rem;
+    font-weight: 800;
+    cursor: pointer;
+  }
+  #pixPayment .pixKey:hover {
     color: #7ce07c;
+  }
+  /* WhatsApp botão */
+  #whatsappLink {
+    margin-top: 0.8rem;
+    display: inline-block;
+    background: #25d366;
+    color: white;
+    font-weight: 900;
+    padding: 0.7rem 1.3rem;
+    border-radius: 50px;
+    text-align: center;
+    user-select: none;
+    transition: background 0.3s ease;
+  }
+  #whatsappLink:hover {
+    background: #128c4a;
+  }
+  /* Responsividade */
+  @media (max-width: 900px) {
+    #cart {
+      width: 90vw;
+    }
+  }
+  @media (max-width: 600px) {
+    nav a {
+      margin-left: 0.8rem;
+      font-size: 0.9rem;
+    }
+    header h1 {
+      font-size: 1.4rem;
+    }
   }
 </style>
 </head>
@@ -176,141 +280,165 @@
   </nav>
 </header>
 
-<section id="bloxfruits">
-  <h2>Blox Fruits</h2>
-  <div class="produtos">
-    <div class="produto">
-      <img src="https://i.imgur.com/0nZXzFb.jpg" alt="Conta Level 2450 - Dragon" />
-      <div class="produto-info">
-        <h3>Conta Level 2450 - Dragon</h3>
-        <p class="price">R$ 80,00</p>
-        <button onclick="entregar('Usuário: Cleiton\\nSenha: 1234')">Comprar Agora</button>
+<main>
+  <!-- Blox Fruits -->
+  <section id="bloxfruits">
+    <h2>Blox Fruits</h2>
+    <div class="produtos-grid">
+      <div class="produto-card" data-category="bloxfruits" data-price="80" data-name="Conta Level 2450 - Dragon">
+        <img src="https://i.imgur.com/0nZXzFb.jpg" alt="Conta Level 2450 - Dragon" />
+        <div class="produto-info">
+          <h3>Conta Level 2450 - Dragon</h3>
+          <p class="price">R$ 80,00</p>
+          <button onclick="addToCart('Conta Level 2450 - Dragon', 80, 'Usuário: Cleiton\nSenha: 1234')">Comprar</button>
+        </div>
+      </div>
+      <div class="produto-card" data-category="bloxfruits" data-price="75" data-name="Conta Level 2300 - Leopard">
+        <img src="https://i.imgur.com/Qh0nMBW.jpg" alt="Conta Level 2300 - Leopard" />
+        <div class="produto-info">
+          <h3>Conta Level 2300 - Leopard</h3>
+          <p class="price">R$ 75,00</p>
+          <button onclick="addToCart('Conta Level 2300 - Leopard', 75, 'Usuário: Daniel\nSenha: 5678')">Comprar</button>
+        </div>
+      </div>
+      <div class="produto-card" data-category="bloxfruits" data-price="70" data-name="Conta Level 2200 - Venom">
+        <img src="https://i.imgur.com/UTcgr2x.jpg" alt="Conta Level 2200 - Venom" />
+        <div class="produto-info">
+          <h3>Conta Level 2200 - Venom</h3>
+          <p class="price">R$ 70,00</p>
+          <button onclick="addToCart('Conta Level 2200 - Venom', 70, 'Usuário: Lucas\nSenha: 91011')">Comprar</button>
+        </div>
       </div>
     </div>
-    <div class="produto">
-      <img src="https://i.imgur.com/Qh0nMBW.jpg" alt="Conta Level 2300 - Leopard" />
-      <div class="produto-info">
-        <h3>Conta Level 2300 - Leopard</h3>
-        <p class="price">R$ 75,00</p>
-        <button onclick="entregar('Usuário: Daniel\\nSenha: 5678')">Comprar Agora</button>
-      </div>
-    </div>
-    <div class="produto">
-      <img src="https://i.imgur.com/UTcgr2x.jpg" alt="Conta Level 2200 - Venom" />
-      <div class="produto-info">
-        <h3>Conta Level 2200 - Venom</h3>
-        <p class="price">R$ 70,00</p>
-        <button onclick="entregar('Usuário: Lucas\\nSenha: 91011')">Comprar Agora</button>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section id="robux">
-  <h2>Robux</h2>
-  <div class="produtos">
-    <div class="produto">
-      <img src="https://i.imgur.com/qv5Om4E.png" alt="500 Robux" />
-      <div class="produto-info">
-        <h3>500 Robux</h3>
-        <p class="price">R$ 40,00</p>
-        <button onclick="entregar('Código Robux: ROBUX-500-GRT98')">Comprar Agora</button>
+  <!-- Robux -->
+  <section id="robux" style="margin-top:3rem;">
+    <h2>Robux</h2>
+    <div class="produtos-grid">
+      <div class="produto-card" data-category="robux" data-price="40" data-name="500 Robux">
+        <img src="https://i.imgur.com/qv5Om4E.png" alt="500 Robux" />
+        <div class="produto-info">
+          <h3>500 Robux</h3>
+          <p class="price">R$ 40,00</p>
+          <button onclick="addToCart('500 Robux', 40, 'Código Robux: ROBUX-500-GRT98')">Comprar</button>
+        </div>
+      </div>
+      <div class="produto-card" data-category="robux" data-price="75" data-name="1000 Robux">
+        <img src="https://i.imgur.com/qv5Om4E.png" alt="1000 Robux" />
+        <div class="produto-info">
+          <h3>1000 Robux</h3>
+          <p class="price">R$ 75,00</p>
+          <button onclick="addToCart('1000 Robux', 75, 'Código Robux: ROBUX-1000-HY72J')">Comprar</button>
+        </div>
+      </div>
+      <div class="produto-card" data-category="robux" data-price="140" data-name="2000 Robux">
+        <img src="https://i.imgur.com/qv5Om4E.png" alt="2000 Robux" />
+        <div class="produto-info">
+          <h3>2000 Robux</h3>
+          <p class="price">R$ 140,00</p>
+          <button onclick="addToCart('2000 Robux', 140, 'Código Robux: ROBUX-2000-XY98P')">Comprar</button>
+        </div>
       </div>
     </div>
-    <div class="produto">
-      <img src="https://i.imgur.com/qv5Om4E.png" alt="1000 Robux" />
-      <div class="produto-info">
-        <h3>1000 Robux</h3>
-        <p class="price">R$ 75,00</p>
-        <button onclick="entregar('Código Robux: ROBUX-1000-HY72J')">Comprar Agora</button>
-      </div>
-    </div>
-    <div class="produto">
-      <img src="https://i.imgur.com/qv5Om4E.png" alt="2000 Robux" />
-      <div class="produto-info">
-        <h3>2000 Robux</h3>
-        <p class="price">R$ 140,00</p>
-        <button onclick="entregar('Código Robux: ROBUX-2000-XY98P')">Comprar Agora</button>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section id="freefire">
-  <h2>Diamantes Free Fire</h2>
-  <div class="produtos">
-    <div class="produto">
-      <img src="https://i.imgur.com/1m9h60B.png" alt="1000 Diamantes" />
-      <div class="produto-info">
-        <h3>1000 Diamantes</h3>
-        <p class="price">R$ 60,00</p>
-        <button onclick="entregar('ID Free Fire: 99887766')">Comprar Agora</button>
+  <!-- Free Fire -->
+  <section id="freefire" style="margin-top:3rem;">
+    <h2>Diamantes Free Fire</h2>
+    <div class="produtos-grid">
+      <div class="produto-card" data-category="freefire" data-price="60" data-name="1000 Diamantes">
+        <img src="https://i.imgur.com/1m9h60B.png" alt="1000 Diamantes" />
+        <div class="produto-info">
+          <h3>1000 Diamantes</h3>
+          <p class="price">R$ 60,00</p>
+          <button onclick="addToCart('1000 Diamantes', 60, 'ID Free Fire: 99887766')">Comprar</button>
+        </div>
+      </div>
+      <div class="produto-card" data-category="freefire" data-price="115" data-name="2000 Diamantes">
+        <img src="https://i.imgur.com/1m9h60B.png" alt="2000 Diamantes" />
+        <div class="produto-info">
+          <h3>2000 Diamantes</h3>
+          <p class="price">R$ 115,00</p>
+          <button onclick="addToCart('2000 Diamantes', 115, 'ID Free Fire: 44556677')">Comprar</button>
+        </div>
+      </div>
+      <div class="produto-card" data-category="freefire" data-price="275" data-name="5000 Diamantes">
+        <img src="https://i.imgur.com/1m9h60B.png" alt="5000 Diamantes" />
+        <div class="produto-info">
+          <h3>5000 Diamantes</h3>
+          <p class="price">R$ 275,00</p>
+          <button onclick="addToCart('5000 Diamantes', 275, 'ID Free Fire: 11223344')">Comprar</button>
+        </div>
       </div>
     </div>
-    <div class="produto">
-      <img src="https://i.imgur.com/1m9h60B.png" alt="2000 Diamantes" />
-      <div class="produto-info">
-        <h3>2000 Diamantes</h3>
-        <p class="price">R$ 115,00</p>
-        <button onclick="entregar('ID Free Fire: 44556677')">Comprar Agora</button>
-      </div>
-    </div>
-    <div class="produto">
-      <img src="https://i.imgur.com/1m9h60B.png" alt="5000 Diamantes" />
-      <div class="produto-info">
-        <h3>5000 Diamantes</h3>
-        <p class="price">R$ 275,00</p>
-        <button onclick="entregar('ID Free Fire: 11223344')">Comprar Agora</button>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
+</main>
 
-<div id="entregaBox"></div>
+<!-- Botão abrir carrinho -->
+<button id="openCartBtn" aria-label="Abrir carrinho de compras">Carrinho 🛒</button>
 
-<footer>
-  <p>Pix para pagamento:</p>
-  <img
-    src="https://chart.googleapis.com/chart?cht=qr&chl=pix:israeldasilvasantos355@gmail.com&chs=150x150&choe=UTF-8&chld=L|2"
-    alt="QR Code Pix"
-    title="Clique para copiar a chave Pix"
-    onclick="copyPixKey()"
-    style="cursor:pointer"
-  />
-  <div class="pix-key" onclick="copyPixKey()" title="Clique para copiar a chave Pix" style="cursor:pointer;">
-    israeldasilvasantos355@gmail.com
+<!-- Carrinho -->
+<aside id="cart" aria-label="Carrinho de compras">
+  <h2>Seu Carrinho</h2>
+  <ul id="cartItems"></ul>
+  <div class="total">Total: R$ <span id="cartTotal">0,00</span></div>
+  <div id="pixPayment" style="display:none;">
+    <p>Pague via Pix com o QR Code:</p>
+    <img id="pixQR" src="" alt="QR Code Pix" title="Clique para copiar chave Pix" />
+    <div class="pixKey" id="pixKey" title="Clique para copiar chave Pix" tabindex="0"></div>
+    <a id="whatsappLink" href="#" target="_blank" rel="noopener noreferrer" aria-label="Enviar comprovante pelo WhatsApp">Enviar WhatsApp</a>
   </div>
-</footer>
+  <button id="closeCart">Fechar Carrinho</button>
+</aside>
 
 <script>
-  function entregar(dados) {
-    const entregaBox = document.getElementById('entregaBox');
-    entregaBox.style.display = 'block';
-    entregaBox.style.position = 'fixed';
-    entregaBox.style.bottom = '80px';
-    entregaBox.style.left = '50%';
-    entregaBox.style.transform = 'translateX(-50%)';
-    entregaBox.style.background = '#145214';
-    entregaBox.style.padding = '1rem 1.5rem';
-    entregaBox.style.borderRadius = '8px';
-    entregaBox.style.boxShadow = '0 0 15px #0a2a0a';
-    entregaBox.style.color = '#d1f0d1';
-    entregaBox.style.fontFamily = 'monospace';
-    entregaBox.style.fontSize = '1.1rem';
-    entregaBox.style.userSelect = 'all';
-    entregaBox.innerText = 'Seu produto foi entregue automaticamente:\n\n' + dados;
-    setTimeout(() => {
-      entregaBox.style.display = 'none';
-    }, 12000); // Oculta após 12 segundos
+  const pixKey = 'israeldasilvasantos355@gmail.com';
+
+  const openCartBtn = document.getElementById('openCartBtn');
+  const cart = document.getElementById('cart');
+  const cartItemsEl = document.getElementById('cartItems');
+  const cartTotalEl = document.getElementById('cartTotal');
+  const pixPayment = document.getElementById('pixPayment');
+  const pixQR = document.getElementById('pixQR');
+  const pixKeyEl = document.getElementById('pixKey');
+  const whatsappLink = document.getElementById('whatsappLink');
+  const closeCartBtn = document.getElementById('closeCart');
+
+  let cartItems = [];
+
+  openCartBtn.addEventListener('click', () => {
+    cart.classList.add('open');
+    updateCart();
+  });
+  closeCartBtn.addEventListener('click', () => {
+    cart.classList.remove('open');
+  });
+
+  function addToCart(name, price, details) {
+    // Verifica se produto já está no carrinho
+    const existingIndex = cartItems.findIndex(item => item.name === name);
+    if (existingIndex > -1) {
+      alert('Produto já está no carrinho.');
+      return;
+    }
+    cartItems.push({ name, price, details });
+    alert(`${name} adicionado ao carrinho!`);
+    openCartBtn.click();
+    updateCart();
   }
 
-  function copyPixKey() {
-    const pixKey = 'israeldasilvasantos355@gmail.com';
-    navigator.clipboard.writeText(pixKey).then(() => {
-      alert('Chave Pix copiada: ' + pixKey);
-    });
+  function removeFromCart(name) {
+    cartItems = cartItems.filter(item => item.name !== name);
+    updateCart();
   }
-</script>
 
-</body>
-</html>
+  function updateCart() {
+    cartItemsEl.innerHTML = '';
+    if (cartItems.length === 0) {
+      cartItemsEl.innerHTML = '<li>Seu carrinho está vazio.</li>';
+      pixPayment.style.display = 'none';
+      cartTotalEl.textContent = '0,00';
+      return;
+    }
+    let total =
