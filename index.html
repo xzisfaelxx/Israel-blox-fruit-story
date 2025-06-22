@@ -396,5 +396,5 @@
   function gerarPayloadPix(chave, valor, descricao) {
     // Formata o valor para o padrão Pix: 2 casas decimais
     const valorFormatado = Number(valor).toFixed(2);
-    // Monta o payload básico para um Pix sem campos extras complexos
-    return `00020126580014BR.GOV.BCB.PIX0114${chave.length.toString().padStart(2,'0')}${chave}0208${valorFormatado.length.toString().padStart(2,'0')}${valorFormatado}520400005303
+    // Monta o payload básico para um Pix simples (sem campos extras)
+    return `00020126580014BR.GOV.BCB.PIX0114${chave.length.toString().padStart(2,'0')}${chave}520400005303BR5927Israel Store - Compra via Pix6009SAO PAULO61080540900062070503***6304${calcularCRC16(`000201265800
