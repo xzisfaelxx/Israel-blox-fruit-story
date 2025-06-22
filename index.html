@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -5,266 +6,182 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Israel Store - BloxShop Style</title>
 <style>
-  /* Reset básico */
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-  }
+  *{margin:0; padding:0; box-sizing:border-box;}
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #0d3a0d;
-    color: #d1f0d1;
-    min-height: 100vh;
+    background:#0d3a0d; color:#d1f0d1; min-height:100vh;
   }
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-  /* Menu fixo */
+  a {text-decoration:none; color:inherit;}
   header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    background: #145214;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    padding: 0 1.5rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.7);
-    z-index: 1000;
+    position:fixed; top:0; left:0; right:0;
+    background:#145214; height:60px; display:flex;
+    align-items:center; padding:0 1.5rem;
+    box-shadow:0 2px 6px rgba(0,0,0,0.7);
+    z-index:1000;
   }
   header h1 {
-    color: #a5d6a7;
-    font-weight: 900;
-    font-size: 1.8rem;
-    user-select: none;
+    color:#a5d6a7; font-weight:900; font-size:1.8rem;
+    user-select:none;
   }
   nav {
-    margin-left: auto;
+    margin-left:auto;
   }
   nav a {
-    font-weight: 700;
-    margin-left: 1.5rem;
-    font-size: 1rem;
-    color: #a5d6a7;
-    transition: color 0.3s ease;
+    font-weight:700; margin-left:1.5rem; font-size:1rem;
+    color:#a5d6a7; transition:color 0.3s ease;
   }
   nav a:hover {
-    color: #c8e6c9;
+    color:#c8e6c9;
   }
-  /* Conteúdo principal */
   main {
-    padding: 80px 1rem 100px;
-    max-width: 1100px;
-    margin: 0 auto;
+    padding:80px 1rem 100px;
+    max-width:1100px; margin:0 auto;
   }
   h2 {
-    border-bottom: 3px solid #4caf50;
-    padding-bottom: 0.3rem;
-    margin-bottom: 1rem;
-    user-select: none;
+    border-bottom:3px solid #4caf50;
+    padding-bottom:.3rem; margin-bottom:1rem;
+    user-select:none;
   }
-  /* Grid produtos */
   .produtos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-    gap: 1.2rem;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:1.2rem;
   }
   .produto-card {
-    background: #196219;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 12px #0a2a0a;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.2s ease;
+    background:#196219; border-radius:10px;
+    overflow:hidden; box-shadow:0 0 12px #0a2a0a;
+    display:flex; flex-direction:column;
+    transition:transform .2s ease;
   }
   .produto-card:hover {
-    transform: scale(1.05);
+    transform:scale(1.05);
   }
   .produto-card img {
-    width: 100%;
-    object-fit: cover;
-    height: 160px;
-    border-bottom: 3px solid #4caf50;
+    width:100%; object-fit:cover; height:160px;
+    border-bottom:3px solid #4caf50;
   }
   .produto-info {
-    flex-grow: 1;
-    padding: 1rem;
-    color: #d0f0d0;
-    display: flex;
-    flex-direction: column;
+    flex-grow:1; padding:1rem; color:#d0f0d0;
+    display:flex; flex-direction:column;
   }
   .produto-info h3 {
-    margin-bottom: 0.5rem;
-    font-weight: 700;
-    font-size: 1.2rem;
-    user-select: none;
+    margin-bottom:.5rem;
+    font-weight:700; font-size:1.2rem;
+    user-select:none;
   }
   .produto-info .price {
-    font-size: 1rem;
-    font-weight: 800;
-    color: #aaffaa;
-    margin-bottom: 1rem;
-    user-select: none;
+    font-size:1rem; font-weight:800; color:#aaffaa;
+    margin-bottom:1rem; user-select:none;
   }
   .produto-info button {
-    margin-top: auto;
-    background: #4caf50;
-    border: none;
-    padding: 0.7rem;
-    font-weight: 900;
-    color: #0b3d0b;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    user-select: none;
+    margin-top:auto; background:#4caf50; border:none;
+    padding:.7rem; font-weight:900; color:#0b3d0b;
+    border-radius:8px; cursor:pointer;
+    transition:background .3s ease;
+    user-select:none;
   }
   .produto-info button:hover {
-    background: #3c8c3c;
+    background:#3c8c3c;
   }
-  /* Carrinho */
   #cart {
-    position: fixed;
-    top: 60px; right: 0;
-    width: 320px;
-    max-height: calc(100vh - 60px);
-    background: #145214;
-    box-shadow: -3px 0 15px #0a2a0a;
-    overflow-y: auto;
-    padding: 1rem;
-    z-index: 1100;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
+    position:fixed; top:60px; right:0;
+    width:320px; max-height:calc(100vh - 60px);
+    background:#145214; box-shadow:-3px 0 15px #0a2a0a;
+    overflow-y:auto; padding:1rem; z-index:1100;
+    transform:translateX(100%);
+    transition:transform .3s ease;
   }
   #cart.open {
-    transform: translateX(0);
+    transform:translateX(0);
   }
   #cart h2 {
-    margin-bottom: 1rem;
-    color: #bbf7bb;
+    margin-bottom:1rem; color:#bbf7bb;
   }
   #cart ul {
-    list-style: none;
-    max-height: 60vh;
-    overflow-y: auto;
-    margin-bottom: 1rem;
+    list-style:none; max-height:60vh; overflow-y:auto;
+    margin-bottom:1rem;
   }
   #cart li {
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid #2d602d;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    margin-bottom:1rem; padding-bottom:.5rem;
+    border-bottom:1px solid #2d602d;
+    display:flex; justify-content:space-between;
+    align-items:center;
   }
   #cart li span {
-    user-select: none;
+    user-select:none;
   }
   #cart li button.remove {
-    background: #a33;
-    border: none;
-    color: white;
-    font-weight: bold;
-    border-radius: 6px;
-    padding: 0.2rem 0.5rem;
-    cursor: pointer;
-    user-select: none;
-    transition: background 0.3s ease;
+    background:#a33; border:none; color:white;
+    font-weight:bold; border-radius:6px;
+    padding:.2rem .5rem; cursor:pointer;
+    user-select:none;
+    transition:background .3s ease;
   }
   #cart li button.remove:hover {
-    background: #d55;
+    background:#d55;
   }
   #cart .total {
-    font-weight: 800;
-    font-size: 1.2rem;
-    user-select: none;
-    margin-bottom: 1rem;
-    color: #aaffaa;
+    font-weight:800; font-size:1.2rem;
+    user-select:none; margin-bottom:1rem;
+    color:#aaffaa;
   }
   #cart button#closeCart {
-    background: #4caf50;
-    border: none;
-    width: 100%;
-    padding: 0.7rem;
-    font-weight: 900;
-    border-radius: 8px;
-    cursor: pointer;
-    color: #0b3d0b;
-    user-select: none;
-    transition: background 0.3s ease;
+    background:#4caf50; border:none;
+    width:100%; padding:.7rem;
+    font-weight:900; border-radius:8px;
+    cursor:pointer; color:#0b3d0b;
+    user-select:none; transition:background .3s ease;
   }
   #cart button#closeCart:hover {
-    background: #3c8c3c;
+    background:#3c8c3c;
   }
-  /* Botão abrir carrinho */
   #openCartBtn {
-    position: fixed;
-    top: 65px;
-    right: 10px;
-    background: #4caf50;
-    color: #0b3d0b;
-    border: none;
-    padding: 0.7rem 1.1rem;
-    font-weight: 900;
-    border-radius: 8px;
-    cursor: pointer;
-    user-select: none;
-    z-index: 1200;
-    box-shadow: 0 0 10px #3c8c3c;
+    position:fixed; top:65px; right:10px;
+    background:#4caf50; color:#0b3d0b; border:none;
+    padding:.7rem 1.1rem; font-weight:900;
+    border-radius:8px; cursor:pointer;
+    user-select:none; z-index:1200;
+    box-shadow:0 0 10px #3c8c3c;
   }
   #openCartBtn:hover {
-    background: #3c8c3c;
+    background:#3c8c3c;
   }
-  /* QR Code e Pix */
   #pixPayment {
-    margin-top: 1rem;
-    text-align: center;
-    color: #aaffaa;
-    user-select: none;
+    margin-top:1rem; text-align:center;
+    color:#aaffaa; user-select:none;
   }
   #pixPayment img {
-    margin-top: 0.7rem;
-    width: 150px;
-    border-radius: 12px;
-    box-shadow: 0 0 12px #0a2a0a;
-    cursor: pointer;
+    margin-top:.7rem; width:150px;
+    border-radius:12px; box-shadow:0 0 12px #0a2a0a;
+    cursor:pointer;
   }
   #pixPayment .pixKey {
-    margin-top: 0.5rem;
-    font-weight: 800;
-    cursor: pointer;
+    margin-top:.5rem; font-weight:800; cursor:pointer;
   }
   #pixPayment .pixKey:hover {
-    color: #7ce07c;
+    color:#7ce07c;
   }
-  /* WhatsApp botão */
   #whatsappLink {
-    margin-top: 0.8rem;
-    display: inline-block;
-    background: #25d366;
-    color: white;
-    font-weight: 900;
-    padding: 0.7rem 1.3rem;
-    border-radius: 50px;
-    text-align: center;
-    user-select: none;
-    transition: background 0.3s ease;
+    margin-top:.8rem; display:inline-block;
+    background:#25d366; color:white; font-weight:900;
+    padding:.7rem 1.3rem; border-radius:50px;
+    text-align:center; user-select:none;
+    transition:background .3s ease;
   }
   #whatsappLink:hover {
-    background: #128c4a;
+    background:#128c4a;
   }
-  /* Responsividade */
   @media (max-width: 900px) {
     #cart {
-      width: 90vw;
+      width:90vw;
     }
   }
   @media (max-width: 600px) {
     nav a {
-      margin-left: 0.8rem;
-      font-size: 0.9rem;
+      margin-left:.8rem; font-size:.9rem;
     }
     header h1 {
-      font-size: 1.4rem;
+      font-size:1.4rem;
     }
   }
 </style>
@@ -281,11 +198,10 @@
 </header>
 
 <main>
-  <!-- Blox Fruits -->
   <section id="bloxfruits">
     <h2>Blox Fruits</h2>
     <div class="produtos-grid">
-      <div class="produto-card" data-category="bloxfruits" data-price="80" data-name="Conta Level 2450 - Dragon">
+      <div class="produto-card" data-price="80" data-name="Conta Level 2450 - Dragon">
         <img src="https://i.imgur.com/0nZXzFb.jpg" alt="Conta Level 2450 - Dragon" />
         <div class="produto-info">
           <h3>Conta Level 2450 - Dragon</h3>
@@ -293,7 +209,7 @@
           <button onclick="addToCart('Conta Level 2450 - Dragon', 80, 'Usuário: Cleiton\nSenha: 1234')">Comprar</button>
         </div>
       </div>
-      <div class="produto-card" data-category="bloxfruits" data-price="75" data-name="Conta Level 2300 - Leopard">
+      <div class="produto-card" data-price="75" data-name="Conta Level 2300 - Leopard">
         <img src="https://i.imgur.com/Qh0nMBW.jpg" alt="Conta Level 2300 - Leopard" />
         <div class="produto-info">
           <h3>Conta Level 2300 - Leopard</h3>
@@ -301,7 +217,7 @@
           <button onclick="addToCart('Conta Level 2300 - Leopard', 75, 'Usuário: Daniel\nSenha: 5678')">Comprar</button>
         </div>
       </div>
-      <div class="produto-card" data-category="bloxfruits" data-price="70" data-name="Conta Level 2200 - Venom">
+      <div class="produto-card" data-price="70" data-name="Conta Level 2200 - Venom">
         <img src="https://i.imgur.com/UTcgr2x.jpg" alt="Conta Level 2200 - Venom" />
         <div class="produto-info">
           <h3>Conta Level 2200 - Venom</h3>
@@ -312,11 +228,10 @@
     </div>
   </section>
 
-  <!-- Robux -->
   <section id="robux" style="margin-top:3rem;">
     <h2>Robux</h2>
     <div class="produtos-grid">
-      <div class="produto-card" data-category="robux" data-price="40" data-name="500 Robux">
+      <div class="produto-card" data-price="40" data-name="500 Robux">
         <img src="https://i.imgur.com/qv5Om4E.png" alt="500 Robux" />
         <div class="produto-info">
           <h3>500 Robux</h3>
@@ -324,7 +239,7 @@
           <button onclick="addToCart('500 Robux', 40, 'Código Robux: ROBUX-500-GRT98')">Comprar</button>
         </div>
       </div>
-      <div class="produto-card" data-category="robux" data-price="75" data-name="1000 Robux">
+      <div class="produto-card" data-price="75" data-name="1000 Robux">
         <img src="https://i.imgur.com/qv5Om4E.png" alt="1000 Robux" />
         <div class="produto-info">
           <h3>1000 Robux</h3>
@@ -332,7 +247,7 @@
           <button onclick="addToCart('1000 Robux', 75, 'Código Robux: ROBUX-1000-HY72J')">Comprar</button>
         </div>
       </div>
-      <div class="produto-card" data-category="robux" data-price="140" data-name="2000 Robux">
+      <div class="produto-card" data-price="140" data-name="2000 Robux">
         <img src="https://i.imgur.com/qv5Om4E.png" alt="2000 Robux" />
         <div class="produto-info">
           <h3>2000 Robux</h3>
@@ -343,11 +258,10 @@
     </div>
   </section>
 
-  <!-- Free Fire -->
   <section id="freefire" style="margin-top:3rem;">
     <h2>Diamantes Free Fire</h2>
     <div class="produtos-grid">
-      <div class="produto-card" data-category="freefire" data-price="60" data-name="1000 Diamantes">
+      <div class="produto-card" data-price="60" data-name="1000 Diamantes">
         <img src="https://i.imgur.com/1m9h60B.png" alt="1000 Diamantes" />
         <div class="produto-info">
           <h3>1000 Diamantes</h3>
@@ -355,7 +269,7 @@
           <button onclick="addToCart('1000 Diamantes', 60, 'ID Free Fire: 99887766')">Comprar</button>
         </div>
       </div>
-      <div class="produto-card" data-category="freefire" data-price="115" data-name="2000 Diamantes">
+      <div class="produto-card" data-price="115" data-name="2000 Diamantes">
         <img src="https://i.imgur.com/1m9h60B.png" alt="2000 Diamantes" />
         <div class="produto-info">
           <h3>2000 Diamantes</h3>
@@ -363,7 +277,7 @@
           <button onclick="addToCart('2000 Diamantes', 115, 'ID Free Fire: 44556677')">Comprar</button>
         </div>
       </div>
-      <div class="produto-card" data-category="freefire" data-price="275" data-name="5000 Diamantes">
+      <div class="produto-card" data-price="275" data-name="5000 Diamantes">
         <img src="https://i.imgur.com/1m9h60B.png" alt="5000 Diamantes" />
         <div class="produto-info">
           <h3>5000 Diamantes</h3>
@@ -375,10 +289,8 @@
   </section>
 </main>
 
-<!-- Botão abrir carrinho -->
 <button id="openCartBtn" aria-label="Abrir carrinho de compras">Carrinho 🛒</button>
 
-<!-- Carrinho -->
 <aside id="cart" aria-label="Carrinho de compras">
   <h2>Seu Carrinho</h2>
   <ul id="cartItems"></ul>
@@ -415,14 +327,27 @@
     cart.classList.remove('open');
   });
 
+  pixKeyEl.addEventListener('click', () => {
+    navigator.clipboard.writeText(pixKey).then(() => {
+      alert('Chave Pix copiada!');
+    });
+  });
+
+  pixKeyEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      navigator.clipboard.writeText(pixKey).then(() => {
+        alert('Chave Pix copiada!');
+      });
+    }
+  });
+
   function addToCart(name, price, details) {
-    // Verifica se produto já está no carrinho
-    const existingIndex = cartItems.findIndex(item => item.name === name);
-    if (existingIndex > -1) {
+    if(cartItems.some(item => item.name === name)){
       alert('Produto já está no carrinho.');
       return;
     }
-    cartItems.push({ name, price, details });
+    cartItems.push({name, price, details});
     alert(`${name} adicionado ao carrinho!`);
     openCartBtn.click();
     updateCart();
@@ -435,10 +360,41 @@
 
   function updateCart() {
     cartItemsEl.innerHTML = '';
-    if (cartItems.length === 0) {
+    if(cartItems.length === 0){
       cartItemsEl.innerHTML = '<li>Seu carrinho está vazio.</li>';
       pixPayment.style.display = 'none';
       cartTotalEl.textContent = '0,00';
       return;
     }
-    let total =
+
+    let total = 0;
+    cartItems.forEach(item => {
+      total += item.price;
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <span><strong>${item.name}</strong> - R$ ${item.price.toFixed(2)}</span>
+        <button class="remove" aria-label="Remover ${item.name} do carrinho">X</button>
+      `;
+      li.querySelector('button').addEventListener('click', () => {
+        removeFromCart(item.name);
+      });
+      cartItemsEl.appendChild(li);
+    });
+    cartTotalEl.textContent = total.toFixed(2);
+
+    // Mostrar Pix e gerar QR code Pix dinâmico
+    pixPayment.style.display = 'block';
+    const pixPayload = gerarPayloadPix(pixKey, total.toFixed(2), 'Pagamento Israel Store');
+    pixQR.src = `https://chart.googleapis.com/chart?cht=qr&chl=${encodeURIComponent(pixPayload)}&chs=200x200&choe=UTF-8&chld=L|2`;
+    pixKeyEl.textContent = pixKey;
+
+    // Link whatsapp com mensagem automática
+    const mensagem = encodeURIComponent(`Olá, já realizei o pagamento de R$ ${total.toFixed(2)} na Israel Store e quero receber meu pedido.`);
+    whatsappLink.href = `https://wa.me/5551997097814?text=${mensagem}`;
+  }
+
+  // Gera o payload Pix no formato simples para QR code
+  // Fonte: https://gist.github.com/pix-qr-code-example (simplificado)
+  function gerarPayloadPix(chave, valor, descricao) {
+    const formattedValor = Number(valor).toFixed(
+
