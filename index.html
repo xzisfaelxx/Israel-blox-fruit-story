@@ -11,7 +11,7 @@
       background: linear-gradient(to bottom, #0b3d0b, #0f4d0f);
       color: #fff;
       margin: 0;
-      padding: 0;
+      padding-bottom: 140px; /* Espaço para o rodapé fixo */
     }
     header {
       background: #0e5c0e;
@@ -43,6 +43,8 @@
       text-align: center;
       color: #bfffbf;
       margin-bottom: 1rem;
+      border-bottom: 2px solid #4caf50;
+      padding-bottom: 0.5rem;
     }
     .produto {
       background: #196219;
@@ -78,14 +80,6 @@
     .produto button:hover {
       background: #3c8c3c;
     }
-    footer {
-      background: #145214;
-      padding: 1rem;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #c4f4c4;
-      margin-top: 2rem;
-    }
     .entrega {
       background: #145214;
       margin: 1rem auto;
@@ -105,6 +99,42 @@
       font-family: monospace;
       font-size: 1.1rem;
       white-space: pre-wrap;
+    }
+    footer {
+      background: #145214;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 15px 1rem;
+      text-align: center;
+      color: #c4f4c4;
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      font-size: 1rem;
+      user-select: none;
+      z-index: 100;
+    }
+    footer img {
+      width: 100px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #0a2a0a;
+      cursor: pointer;
+    }
+    .pix-key {
+      cursor: pointer;
+      background: #0e5c0e;
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-weight: bold;
+      user-select: all;
+      transition: background 0.3s;
+    }
+    .pix-key:hover {
+      background: #137513;
     }
   </style>
 </head>
@@ -185,7 +215,18 @@
   </div>
 
   <footer>
-    <p>&copy; 2025 Israel Store - Entregas automáticas via HTML</p>
+    <div>
+      <p>Pix para pagamento:</p>
+      <img
+        src="https://chart.googleapis.com/chart?cht=qr&chl=pix:israel@pix.com.br&chs=150x150&choe=UTF-8&chld=L|2"
+        alt="QR Code Pix"
+        title="Clique para copiar a chave Pix"
+        onclick="copyPixKey()"
+      />
+    </div>
+    <div class="pix-key" onclick="copyPixKey()" title="Clique para copiar a chave Pix">
+      israel@pix.com.br
+    </div>
   </footer>
 
   <script>
@@ -195,6 +236,13 @@
       entregaBox.style.display = 'block';
       infoEntrega.textContent = dados;
       entregaBox.scrollIntoView({behavior: 'smooth'});
+    }
+
+    function copyPixKey() {
+      const pixKey = 'israel@pix.com.br';
+      navigator.clipboard.writeText(pixKey).then(() => {
+        alert('Chave Pix copiada: ' + pixKey);
+      });
     }
   </script>
 </body>
