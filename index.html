@@ -1,424 +1,82 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Israel Store - TheBlox Style</title>
-<style>
-  /* Reset e básico */
-  * {margin:0; padding:0; box-sizing:border-box;}
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background:#0d47a1;
-    color:#fff;
-    min-height:100vh;
-  }
-  a {text-decoration:none; color:inherit;}
-  ul {list-style:none;}
-
-  /* Header */
-  header {
-    position:fixed; top:0; left:0; right:0;
-    background:#1565c0;
-    height:70px;
-    display:flex;
-    align-items:center;
-    padding: 0 2rem;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    z-index:1000;
-  }
-  header h1 {
-    font-weight: 900;
-    font-size: 2rem;
-    color:#bbdefb;
-    user-select:none;
-  }
-  nav {
-    margin-left:auto;
-  }
-  nav a {
-    margin-left:2rem;
-    font-weight:700;
-    font-size:1.1rem;
-    color:#bbdefb;
-    transition: color 0.3s ease;
-  }
-  nav a:hover, nav a:focus {
-    color:#e3f2fd;
-    outline:none;
-  }
-
-  /* Banner topo */
-  #banner {
-    margin-top:70px;
-    background: url('https://cdn.discordapp.com/attachments/1093565561173745695/1143526031400920586/1322364.png') center/cover no-repeat;
-    height: 240px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    text-shadow: 2px 2px 8px #0009;
-  }
-  #banner h2 {
-    font-size: 2.8rem;
-    font-weight: 900;
-    user-select:none;
-  }
-
-  /* Seções */
-  main {
-    max-width: 1140px;
-    margin: 2rem auto 6rem;
-    padding: 0 1rem;
-  }
-  h2.section-title {
-    font-weight: 900;
-    font-size: 1.9rem;
-    margin-bottom: 1rem;
-    border-bottom: 3px solid #64b5f6;
-    padding-bottom: 0.4rem;
-    user-select:none;
-  }
-
-  /* Grid produtos */
-  .produtos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
-    gap: 1.4rem;
-  }
-
-  /* Cards */
-  .produto-card {
-    background: #1976d2;
-    border-radius: 8px;
-    box-shadow: 0 0 14px rgba(21, 101, 192, 0.7);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.2s ease;
-  }
-  .produto-card:hover, .produto-card:focus-within {
-    transform: scale(1.05);
-    outline:none;
-  }
-  .produto-card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-bottom: 4px solid #64b5f6;
-  }
-  .produto-info {
-    padding: 1rem 1.2rem;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    color: #e3f2fd;
-  }
-  .produto-info h3 {
-    font-weight: 900;
-    font-size: 1.3rem;
-    margin-bottom: 0.6rem;
-  }
-  .produto-info .price {
-    font-weight: 900;
-    font-size: 1.1rem;
-    color: #a5d6a7;
-    margin-bottom: 1rem;
-  }
-  .produto-info button {
-    margin-top: auto;
-    background: #64b5f6;
-    border: none;
-    padding: 0.8rem;
-    font-weight: 900;
-    color: #0d47a1;
-    border-radius: 6px;
-    cursor: pointer;
-    user-select: none;
-    transition: background 0.3s ease;
-  }
-  .produto-info button:hover, .produto-info button:focus {
-    background: #42a5f5;
-    outline: none;
-  }
-
-  /* Carrinho */
-  #cart {
-    position: fixed;
-    top: 70px;
-    right: 0;
-    width: 380px;
-    max-height: calc(100vh - 70px);
-    background: #1565c0;
-    box-shadow: -4px 0 20px rgba(0,0,0,0.6);
-    overflow-y: auto;
-    padding: 1.2rem;
-    z-index: 1100;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-  }
-  #cart.open {
-    transform: translateX(0);
-  }
-  #cart h2 {
-    color: #bbdefb;
-    margin-bottom: 1.2rem;
-  }
-  #cart ul {
-    max-height: 55vh;
-    overflow-y: auto;
-    padding-left: 0;
-    margin-bottom: 1.4rem;
-  }
-  #cart li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #64b5f6;
-    padding-bottom: 0.6rem;
-    margin-bottom: 0.6rem;
-    color: #e3f2fd;
-  }
-  #cart li span {
-    user-select: none;
-  }
-  #cart li button.remove {
-    background: #e53935;
-    border: none;
-    color: white;
-    font-weight: 900;
-    border-radius: 6px;
-    padding: 0.3rem 0.6rem;
-    cursor: pointer;
-    user-select: none;
-    transition: background 0.3s ease;
-  }
-  #cart li button.remove:hover, #cart li button.remove:focus {
-    background: #ef5350;
-    outline: none;
-  }
-  #cart .total {
-    font-weight: 900;
-    font-size: 1.4rem;
-    margin-bottom: 1.4rem;
-    color: #a5d6a7;
-    user-select: none;
-  }
-  #cart button#closeCart {
-    background: #64b5f6;
-    border: none;
-    width: 100%;
-    padding: 0.8rem;
-    font-weight: 900;
-    border-radius: 6px;
-    cursor: pointer;
-    color: #0d47a1;
-    user-select: none;
-    transition: background 0.3s ease;
-  }
-  #cart button#closeCart:hover, #cart button#closeCart:focus {
-    background: #42a5f5;
-    outline: none;
-  }
-
-  /* Botão abrir carrinho */
-  #openCartBtn {
-    position: fixed;
-    top: 75px;
-    right: 25px;
-    background: #64b5f6;
-    color: #0d47a1;
-    border: none;
-    padding: 0.8rem 1.4rem;
-    font-weight: 900;
-    border-radius: 6px;
-    cursor: pointer;
-    user-select: none;
-    box-shadow: 0 0 15px #42a5f5;
-    z-index: 1200;
-    transition: background 0.3s ease;
-  }
-  #openCartBtn:hover, #openCartBtn:focus {
-    background: #42a5f5;
-    outline: none;
-  }
-
-  /* Pix payment */
-  #pixPayment {
-    margin-top: 1.4rem;
-    color: #a5d6a7;
-    user-select: none;
-    text-align: center;
-  }
-  #pixPayment img {
-    margin-top: 0.7rem;
-    width: 180px;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(21, 101, 192, 0.7);
-    cursor: pointer;
-  }
-  #pixPayment .pixKey {
-    margin-top: 0.6rem;
-    font-weight: 900;
-    cursor: pointer;
-  }
-  #pixPayment .pixKey:hover, #pixPayment .pixKey:focus {
-    color: #bbdefb;
-    outline: none;
-  }
-  #whatsappLink {
-    margin-top: 1rem;
-    display: inline-block;
-    background: #25d366;
-    color: white;
-    font-weight: 900;
-    padding: 0.8rem 1.4rem;
-    border-radius: 50px;
-    user-select: none;
-    transition: background 0.3s ease;
-    text-align: center;
-  }
-  #whatsappLink:hover, #whatsappLink:focus {
-    background: #128c4a;
-    outline: none;
-  }
-
-  /* Responsive */
-  @media (max-width: 900px) {
-    #cart {
-      width: 90vw;
-    }
-    #openCartBtn {
-      top: 65px;
-      right: 15px;
-      padding: 0.7rem 1rem;
-    }
-  }
-  @media (max-width: 600px) {
-    nav a {
-      margin-left: 1rem;
-      font-size: 1rem;
-    }
-    header h1 {
-      font-size: 1.5rem;
-    }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Blox - Loja de Contas</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<header>
-  <h1>Israel Store</h1>
-  <nav>
-    <a href="#bloxfruits">Blox Fruits</a>
-    <a href="#robux">Robux</a>
-    <a href="#freefire">Free Fire</a>
-  </nav>
-</header>
-
-<section id="banner" role="banner" aria-label="Banner promocional">
-  <h2>Promoções de Contas e Diamantes</h2>
-</section>
-
-<main>
-  <section id="bloxfruits" aria-labelledby="bloxfruits-title">
-    <h2 id="bloxfruits-title" class="section-title">Contas Blox Fruits</h2>
-    <div class="produtos-grid">
-      <!-- Produtos do site theblox.com.br -->
-      <div class="produto-card" tabindex="0" data-price="75" data-name="Conta Blox Fruits - Level 2500 + 3 Frutas">
-        <img src="https://cdn.discordapp.com/attachments/1093565561173745695/1143498136875918140/blox1.png" alt="Conta Blox Fruits Level 2500 + 3 Frutas" />
-        <div class="produto-info">
-          <h3>Conta Blox Fruits - Level 2500 + 3 Frutas</h3>
-          <p class="price">R$ 75,00</p>
-          <button onclick="addToCart('Conta Blox Fruits - Level 2500 + 3 Frutas', 75, 'Usuário: cleiton123\nSenha: 1234')">Comprar</button>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>The Blox</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#produtos">Produtos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                    <li><a href="#login" class="btn-login">Login</a></li>
+                </ul>
+            </nav>
         </div>
-      </div>
-      <div class="produto-card" tabindex="0" data-price="55" data-name="Conta Blox Fruits - Level 2000 + 2 Frutas">
-        <img src="https://cdn.discordapp.com/attachments/1093565561173745695/1143498180801287208/blox2.png" alt="Conta Blox Fruits Level 2000 + 2 Frutas" />
-        <div class="produto-info">
-          <h3>Conta Blox Fruits - Level 2000 + 2 Frutas</h3>
-          <p class="price">R$ 55,00</p>
-          <button onclick="addToCart('Conta Blox Fruits - Level 2000 + 2 Frutas', 55, 'Usuário: cleiton234\nSenha: 2345')">Comprar</button>
+    </header>
+
+    <!-- Seção Principal -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h2>Compre Contas de Blox Fruits</h2>
+            <p>As melhores contas com raças V4, frutas míticas, CDK e mais!</p>
+            <a href="#produtos" class="btn">Ver Produtos</a>
         </div>
-      </div>
-      <div class="produto-card" tabindex="0" data-price="45" data-name="Conta Blox Fruits - Level 1500 + 1 Fruta">
-        <img src="https://cdn.discordapp.com/attachments/1093565561173745695/1143498215749683488/blox3.png" alt="Conta Blox Fruits Level 1500 + 1 Fruta" />
-        <div class="produto-info">
-          <h3>Conta Blox Fruits - Level 1500 + 1 Fruta</h3>
-          <p class="price">R$ 45,00</p>
-          <button onclick="addToCart('Conta Blox Fruits - Level 1500 + 1 Fruta', 45, 'Usuário: cleiton345\nSenha: 3456')">Comprar</button>
+    </section>
+
+    <!-- Seção de Produtos -->
+    <section id="produtos" class="products">
+        <div class="container">
+            <h2>Nossos Produtos</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150" alt="Conta Blox Fruits">
+                    <h3>Conta Level Max</h3>
+                    <p>R$ 99,99</p>
+                    <button class="btn">Comprar</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com>150" alt="Fruta Mítica">
+                    <h3>Fruta Mítica</h3>
+                    <p>R$ 49,99</p>
+                    <button class="btn">Comprar</button>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
+
+    <!-- Modal de Login -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit" class="btn">Entrar</button>
+            </form>
+            <p>Não tem conta? <a href="#cadastro">Cadastre-se</a></p>
+        </div>
     </div>
-  </section>
 
-  <section id="robux" aria-labelledby="robux-title" style="margin-top:3rem;">
-    <h2 id="robux-title" class="section-title">Robux</h2>
-    <div class="produtos-grid">
-      <div class="produto-card" tabindex="0" data-price="30" data-name="500 Robux">
-        <img src="https://i.imgur.com/qv5Om4E.png" alt="500 Robux" />
-        <div class="produto-info">
-          <h3>500 Robux</h3>
-          <p class="price">R$ 30,00</p>
-          <button onclick="addToCart('500 Robux', 30, 'Código Robux: RBX500ABC')">Comprar</button>
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 The Blox. Todos os direitos reservados.</p>
         </div>
-      </div>
-      <div class="produto-card" tabindex="0" data-price="55" data-name="1000 Robux">
-        <img src="https://i.imgur.com/qv5Om4E.png" alt="1000 Robux" />
-        <div class="produto-info">
-          <h3>1000 Robux</h3>
-          <p class="price">R$ 55,00</p>
-          <button onclick="addToCart('1000 Robux', 55, 'Código Robux: RBX1000XYZ')">Comprar</button>
-        </div>
-      </div>
-      <div class="produto-card" tabindex="0" data-price="100" data-name="2000 Robux">
-        <img src="https://i.imgur.com/qv5Om4E.png" alt="2000 Robux" />
-        <div class="produto-info">
-          <h3>2000 Robux</h3>
-          <p class="price">R$ 100,00</p>
-          <button onclick="addToCart('2000 Robux', 100, 'Código Robux: RBX2000XYZ')">Comprar</button>
-        </div>
-      </div>
-    </div>
-  </section>
+    </footer>
 
-  <section id="freefire" aria-labelledby="freefire-title" style="margin-top:3rem;">
-    <h2 id="freefire-title" class="section-title">Diamantes Free Fire</h2>
-    <div class="produtos-grid">
-      <div class="produto-card" tabindex="0" data-price="40" data-name="1000 Diamantes">
-        <img src="https://cdn.discordapp.com/attachments/1093565561173745695/1143498306842578000/ff1.png" alt="1000 Diamantes Free Fire" />
-        <div class="produto-info">
-          <h3>1000 Diamantes</h3>
-          <p class="price">R$ 40,00</p>
-          <button onclick="addToCart('1000 Diamantes', 40, 'ID Free Fire: 123456789')">Comprar</button>
-        </div>
-      </div>
-      <div class="produto-card" tabindex="0" data-price="75" data-name="2000 Diamantes">
-        <img src="https://cdn.discordapp.com/attachments/1093565561173745695/1143498345492920072/ff2.png" alt="2000 Diamantes Free Fire" />
-        <div class="produto-info">
-          <h3>2000 Diamantes</h3>
-          <p class="price">R$ 75,00</p>
-          <button onclick="addToCart('2000 Diamantes', 75, 'ID Free Fire: 987654321')">Comprar</button>
-        </div>
-      </div>
-      <div class="produto-card" tabindex="0" data-price="170" data-name="5000 Diamantes">
-        <img src="https://cdn.discordapp.com/attachments/1093565561173745695/1143498380543722547/ff3.png" alt="5000 Diamantes Free Fire" />
-        <div class="produto-info">
-          <h3>5000 Diamantes</h3>
-          <p class="price">R$ 170,00</p>
-          <button onclick="addToCart('5000 Diamantes', 170, 'ID Free Fire: 192837465')">Comprar</button>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<button id="openCartBtn" aria-label="Abrir carrinho de compras">Carrinho 🛒</button>
-
-<aside id="cart" aria-label="Carrinho de compras">
-  <h2>Seu Carrinho</h2>
-  <ul id="cartItems"></ul>
-  <div class="total">Total: R$ <span id="cartTotal">0,00</span></div>
-  <div id="pixPayment" style="display:none;">
-    <p>Pague via Pix com o QR Code:</p>
-    <img id="pixQR" src="" alt="QR Code Pix" title="Clique para copiar chave
+    <script src="script.js"></script>
+</body>
+</html>
