@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Blox - Loja de Contas</title>
+    <title>Israel Blox Fruit Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,44 +12,57 @@
     <header>
         <div class="container">
             <div class="logo">
-                <h1>The Blox</h1>
+                <img src="https://via.placeholder.com/150x50?text=Logo+Israel+Blox" alt="Israel Blox Logo">
             </div>
             <nav>
                 <ul>
                     <li><a href="#home">Início</a></li>
-                    <li><a href="#produtos">Produtos</a></li>
+                    <li><a href="#produtos">Loja</a></li>
                     <li><a href="#contato">Contato</a></li>
-                    <li><a href="#login" class="btn-login">Login</a></li>
+                    <li><a href="#" class="btn-login">Login</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Seção Principal -->
+    <!-- Seção Hero -->
     <section id="home" class="hero">
         <div class="container">
-            <h2>Compre Contas de Blox Fruits</h2>
-            <p>As melhores contas com raças V4, frutas míticas, CDK e mais!</p>
-            <a href="#produtos" class="btn">Ver Produtos</a>
+            <img src="https://via.placeholder.com/1200x500?text=Banner+Blox+Fruits" alt="Banner Promocional" class="hero-banner">
+            <h2>Contas Premium de Blox Fruits</h2>
+            <p>Adquira contas com frutas míticas, raças V4, CDK e mais!</p>
+            <a href="#produtos" class="btn">Comprar Agora</a>
         </div>
     </section>
 
     <!-- Seção de Produtos -->
     <section id="produtos" class="products">
         <div class="container">
-            <h2>Nossos Produtos</h2>
+            <h2>Produtos em Destaque</h2>
             <div class="product-grid">
                 <div class="product-card">
-                    <img src="https://via.placeholder.com/150" alt="Conta Blox Fruits">
+                    <img src="https://via.placeholder.com/250x250?text=Conta+Level+Max" alt="Conta Level Max">
                     <h3>Conta Level Max</h3>
                     <p>R$ 99,99</p>
-                    <button class="btn">Comprar</button>
+                    <button class="btn">Adicionar ao Carrinho</button>
                 </div>
                 <div class="product-card">
-                    <img src="https://via.placeholder.com>150" alt="Fruta Mítica">
+                    <img src="https://via.placeholder.com/250x250?text=Fruta+Mítica" alt="Fruta Mítica">
                     <h3>Fruta Mítica</h3>
                     <p>R$ 49,99</p>
-                    <button class="btn">Comprar</button>
+                    <button class="btn">Adicionar ao Carrinho</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/250x250?text=CDK+Full" alt="CDK Full">
+                    <h3>CDK Full</h3>
+                    <p>R$ 79,99</p>
+                    <button class="btn">Adicionar ao Carrinho</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/250x250?text=Soul+Guitar" alt="Soul Guitar">
+                    <h3>Soul Guitar</h3>
+                    <p>R$ 69,99</p>
+                    <button class="btn">Adicionar ao Carrinho</button>
                 </div>
             </div>
         </div>
@@ -57,23 +71,27 @@
     <!-- Modal de Login -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Login</h2>
+            <span class="close">×</span>
+            <h2>Entrar na Conta</h2>
             <form id="loginForm">
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="password">Senha:</label>
-                <input type="password" id="password" name="password" required>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+                </div>
                 <button type="submit" class="btn">Entrar</button>
             </form>
-            <p>Não tem conta? <a href="#cadastro">Cadastre-se</a></p>
+            <p>Não tem conta? <a href="#">Cadastre-se</a></p>
         </div>
     </div>
 
     <!-- Rodapé -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 The Blox. Todos os direitos reservados.</p>
+            <p>© 2025 Israel Blox Fruit Store. Todos os direitos reservados.</p>
         </div>
     </footer>
 
