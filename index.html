@@ -3,186 +3,252 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Israel Store - Vermelho & Preto</title>
+<title>Israel Store - Blox Style</title>
 <style>
-  *{margin:0; padding:0; box-sizing:border-box;}
+  * {
+    margin:0; padding:0; box-sizing:border-box;
+  }
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background:#1a0a0a; 
-    color:#f44336;
+    background:#121212;
+    color:#eee;
     min-height:100vh;
   }
-  a {text-decoration:none; color:inherit;}
   header {
-    position:fixed; top:0; left:0; right:0;
-    background:#b71c1c; height:60px; display:flex;
-    align-items:center; padding:0 1.5rem;
-    box-shadow:0 2px 6px rgba(0,0,0,0.8);
+    background:#0d47a1;
+    padding:15px 30px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    color:#fff;
+    position:fixed;
+    top:0; left:0; right:0;
     z-index:1000;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.6);
   }
   header h1 {
-    color:#ff7961; font-weight:900; font-size:1.8rem;
+    font-weight: 900;
+    font-size: 1.8rem;
     user-select:none;
   }
-  nav {
-    margin-left:auto;
-  }
   nav a {
-    font-weight:700; margin-left:1.5rem; font-size:1rem;
-    color:#ff8a80; transition:color 0.3s ease;
+    color:#cfd8dc;
+    font-weight: 600;
+    margin-left: 1.5rem;
+    text-decoration:none;
+    transition: color 0.3s ease;
   }
   nav a:hover {
-    color:#ff5252;
+    color:#82b1ff;
   }
   main {
-    padding:80px 1rem 100px;
-    max-width:1100px; margin:0 auto;
+    max-width:1100px;
+    margin: 100px auto 50px;
+    padding: 0 15px;
   }
   h2 {
-    border-bottom:3px solid #d32f2f;
-    padding-bottom:.3rem; margin-bottom:1rem;
+    font-weight: 700;
+    border-bottom: 3px solid #0d47a1;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
     user-select:none;
   }
   .produtos-grid {
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:1.2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 1.3rem;
   }
   .produto-card {
-    background:#330000; border-radius:10px;
-    overflow:hidden; box-shadow:0 0 12px #200000;
-    display:flex; flex-direction:column;
-    transition:transform .2s ease;
+    background: #1e1e1e;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px #0d47a1aa;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
   }
   .produto-card:hover {
-    transform:scale(1.05);
+    transform: scale(1.05);
   }
   .produto-card img {
-    width:100%; object-fit:cover; height:160px;
-    border-bottom:3px solid #d32f2f;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
   }
   .produto-info {
-    flex-grow:1; padding:1rem; color:#ffcccb;
-    display:flex; flex-direction:column;
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    color: #ddd;
   }
   .produto-info h3 {
-    margin-bottom:.5rem;
-    font-weight:700; font-size:1.2rem;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
     user-select:none;
   }
   .produto-info .price {
-    font-size:1rem; font-weight:800; color:#ff8a80;
-    margin-bottom:1rem; user-select:none;
-  }
-  .produto-info button {
-    margin-top:auto; background:#d32f2f; border:none;
-    padding:.7rem; font-weight:900; color:#330000;
-    border-radius:8px; cursor:pointer;
-    transition:background .3s ease;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #82b1ff;
+    margin-bottom: 15px;
     user-select:none;
   }
+  .produto-info button {
+    background: #0d47a1;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    user-select:none;
+    transition: background 0.3s ease;
+  }
   .produto-info button:hover {
-    background:#b71c1c;
+    background: #1565c0;
+  }
+  #cart-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #0d47a1;
+    color: #fff;
+    border:none;
+    padding: 14px 20px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 12px #0d47a1bb;
+    z-index: 1500;
+    user-select:none;
+  }
+  #cart-btn:hover {
+    background: #1565c0;
   }
   #cart {
-    position:fixed; top:60px; right:0;
-    width:320px; max-height:calc(100vh - 60px);
-    background:#b71c1c; box-shadow:-3px 0 15px #200000;
-    overflow-y:auto; padding:1rem; z-index:1100;
-    transform:translateX(100%);
-    transition:transform .3s ease;
+    position: fixed;
+    top: 70px;
+    right: 0;
+    width: 360px;
+    max-height: calc(100vh - 80px);
+    background: #212121;
+    box-shadow: -4px 0 15px #0d47a1cc;
+    padding: 20px;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 1400;
+    border-left: 3px solid #0d47a1;
   }
   #cart.open {
-    transform:translateX(0);
+    transform: translateX(0);
   }
   #cart h2 {
-    margin-bottom:1rem; color:#ff8a80;
+    color: #82b1ff;
+    margin-bottom: 15px;
+    user-select:none;
   }
   #cart ul {
-    list-style:none; max-height:60vh; overflow-y:auto;
-    margin-bottom:1rem;
+    list-style: none;
+    max-height: 55vh;
+    overflow-y: auto;
+    margin-bottom: 15px;
   }
   #cart li {
-    margin-bottom:1rem; padding-bottom:.5rem;
-    border-bottom:1px solid #5c0000;
-    display:flex; justify-content:space-between;
-    align-items:center;
-  }
-  #cart li span {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #333;
+    color: #ccc;
     user-select:none;
   }
   #cart li button.remove {
-    background:#880000; border:none; color:white;
-    font-weight:bold; border-radius:6px;
-    padding:.2rem .5rem; cursor:pointer;
+    background: #b71c1c;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 3px 8px;
+    font-weight: 700;
+    transition: background 0.3s ease;
     user-select:none;
-    transition:background .3s ease;
   }
   #cart li button.remove:hover {
-    background:#cc0000;
+    background: #ef5350;
   }
   #cart .total {
-    font-weight:800; font-size:1.2rem;
-    user-select:none; margin-bottom:1rem;
-    color:#ff8a80;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #82b1ff;
+    margin-bottom: 20px;
+    user-select:none;
   }
-  #cart button#closeCart {
-    background:#d32f2f; border:none;
-    width:100%; padding:.7rem;
-    font-weight:900; border-radius:8px;
-    cursor:pointer; color:#330000;
-    user-select:none; transition:background .3s ease;
+  #cart button#close-cart {
+    background: #0d47a1;
+    border: none;
+    color: white;
+    width: 100%;
+    padding: 12px 0;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    user-select:none;
+    transition: background 0.3s ease;
   }
-  #cart button#closeCart:hover {
-    background:#b71c1c;
+  #cart button#close-cart:hover {
+    background: #1565c0;
   }
-  #openCartBtn {
-    position:fixed; top:65px; right:10px;
-    background:#d32f2f; color:#330000; border:none;
-    padding:.7rem 1.1rem; font-weight:900;
-    border-radius:8px; cursor:pointer;
-    user-select:none; z-index:1200;
-    box-shadow:0 0 10px #b71c1c;
+  #pix-section {
+    text-align: center;
+    margin-top: 10px;
+    color: #82b1ff;
+    user-select:none;
   }
-  #openCartBtn:hover {
-    background:#b71c1c;
+  #pix-section img {
+    margin: 10px auto 0;
+    width: 180px;
+    cursor: pointer;
+    border-radius: 12px;
+    box-shadow: 0 0 15px #0d47a1cc;
   }
-  #pixPayment {
-    margin-top:1rem; text-align:center;
-    color:#ff8a80; user-select:none;
+  #pix-section .pix-key {
+    margin-top: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #bbdefb;
   }
-  #pixPayment img {
-    margin-top:.7rem; width:150px;
-    border-radius:12px; box-shadow:0 0 12px #200000;
-    cursor:pointer;
+  #pix-section .pix-key:hover {
+    color: #e3f2fd;
   }
-  #pixPayment .pixKey {
-    margin-top:.5rem; font-weight:800; cursor:pointer;
+  #whatsapp-link {
+    display: inline-block;
+    background: #25d366;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 50px;
+    margin-top: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    user-select:none;
+    transition: background 0.3s ease;
   }
-  #pixPayment .pixKey:hover {
-    color:#ff5252;
+  #whatsapp-link:hover {
+    background: #128c4a;
   }
-  #whatsappLink {
-    margin-top:.8rem; display:inline-block;
-    background:#25d366; color:white; font-weight:900;
-    padding:.7rem 1.3rem; border-radius:50px;
-    text-align:center; user-select:none;
-    transition:background .3s ease;
-  }
-  #whatsappLink:hover {
-    background:#128c4a;
-  }
-  @media (max-width: 900px) {
+  @media(max-width: 960px){
     #cart {
-      width:90vw;
+      width: 90vw;
     }
   }
-  @media (max-width: 600px) {
+  @media(max-width: 600px){
     nav a {
-      margin-left:.8rem; font-size:.9rem;
+      margin-left: 10px;
+      font-size: 0.9rem;
     }
     header h1 {
-      font-size:1.4rem;
+      font-size: 1.4rem;
     }
   }
 </style>
@@ -202,7 +268,7 @@
   <section id="bloxfruits">
     <h2>Blox Fruits</h2>
     <div class="produtos-grid">
-      <div class="produto-card" data-price="80" data-name="Conta Level 2450 - Dragon">
+      <div class="produto-card" data-name="Conta Level 2450 - Dragon" data-price="80" data-details="Usuário: Cleiton\nSenha: 1234">
         <img src="https://i.imgur.com/0nZXzFb.jpg" alt="Conta Level 2450 - Dragon" />
         <div class="produto-info">
           <h3>Conta Level 2450 - Dragon</h3>
@@ -210,7 +276,7 @@
           <button onclick="addToCart('Conta Level 2450 - Dragon', 80, 'Usuário: Cleiton\nSenha: 1234')">Comprar</button>
         </div>
       </div>
-      <div class="produto-card" data-price="75" data-name="Conta Level 2300 - Leopard">
+      <div class="produto-card" data-name="Conta Level 2300 - Leopard" data-price="75" data-details="Usuário: Daniel\nSenha: 5678">
         <img src="https://i.imgur.com/Qh0nMBW.jpg" alt="Conta Level 2300 - Leopard" />
         <div class="produto-info">
           <h3>Conta Level 2300 - Leopard</h3>
@@ -218,7 +284,7 @@
           <button onclick="addToCart('Conta Level 2300 - Leopard', 75, 'Usuário: Daniel\nSenha: 5678')">Comprar</button>
         </div>
       </div>
-      <div class="produto-card" data-price="70" data-name="Conta Level 2200 - Venom">
+      <div class="produto-card" data-name="Conta Level 2200 - Venom" data-price="70" data-details="Usuário: Lucas\nSenha: 91011">
         <img src="https://i.imgur.com/UTcgr2x.jpg" alt="Conta Level 2200 - Venom" />
         <div class="produto-info">
           <h3>Conta Level 2200 - Venom</h3>
@@ -229,10 +295,10 @@
     </div>
   </section>
 
-  <section id="robux" style="margin-top:3rem;">
+  <section id="robux" style="margin-top: 3rem;">
     <h2>Robux</h2>
     <div class="produtos-grid">
-      <div class="produto-card" data-price="40" data-name="500 Robux">
+      <div class="produto-card" data-name="500 Robux" data-price="40" data-details="Código Robux: ROBUX-500-GRT98">
         <img src="https://i.imgur.com/qv5Om4E.png" alt="500 Robux" />
         <div class="produto-info">
           <h3>500 Robux</h3>
@@ -240,7 +306,7 @@
           <button onclick="addToCart('500 Robux', 40, 'Código Robux: ROBUX-500-GRT98')">Comprar</button>
         </div>
       </div>
-      <div class="produto-card" data-price="75" data-name="1000 Robux">
+      <div class="produto-card" data-name="1000 Robux" data-price="75" data-details="Código Robux: ROBUX-1000-HY72J">
         <img src="https://i.imgur.com/qv5Om4E.png" alt="1000 Robux" />
         <div class="produto-info">
           <h3>1000 Robux</h3>
@@ -248,7 +314,7 @@
           <button onclick="addToCart('1000 Robux', 75, 'Código Robux: ROBUX-1000-HY72J')">Comprar</button>
         </div>
       </div>
-      <div class="produto-card" data-price="140" data-name="2000 Robux">
+      <div class="produto-card" data-name="2000 Robux" data-price="140" data-details="Código Robux: ROBUX-2000-XY98P">
         <img src="https://i.imgur.com/qv5Om4E.png" alt="2000 Robux" />
         <div class="produto-info">
           <h3>2000 Robux</h3>
@@ -259,10 +325,10 @@
     </div>
   </section>
 
-  <section id="freefire" style="margin-top:3rem;">
+  <section id="freefire" style="margin-top: 3rem;">
     <h2>Diamantes Free Fire</h2>
     <div class="produtos-grid">
-      <div class="produto-card" data-price="60" data-name="1000 Diamantes">
+      <div class="produto-card" data-name="1000 Diamantes" data-price="60" data-details="ID Free Fire: 99887766">
         <img src="https://i.imgur.com/1m9h60B.png" alt="1000 Diamantes" />
         <div class="produto-info">
           <h3>1000 Diamantes</h3>
@@ -270,7 +336,7 @@
           <button onclick="addToCart('1000 Diamantes', 60, 'ID Free Fire: 99887766')">Comprar</button>
         </div>
       </div>
-      <div class="produto-card" data-price="115" data-name="2000 Diamantes">
+      <div class="produto-card" data-name="2000 Diamantes" data-price="115" data-details="ID Free Fire: 44556677">
         <img src="https://i.imgur.com/1m9h60B.png" alt="2000 Diamantes" />
         <div class="produto-info">
           <h3>2000 Diamantes</h3>
@@ -278,7 +344,7 @@
           <button onclick="addToCart('2000 Diamantes', 115, 'ID Free Fire: 44556677')">Comprar</button>
         </div>
       </div>
-      <div class="produto-card" data-price="275" data-name="5000 Diamantes">
+      <div class="produto-card" data-name="5000 Diamantes" data-price="275" data-details="ID Free Fire: 11223344">
         <img src="https://i.imgur.com/1m9h60B.png" alt="5000 Diamantes" />
         <div class="produto-info">
           <h3>5000 Diamantes</h3>
@@ -290,40 +356,45 @@
   </section>
 </main>
 
-<button id="openCartBtn" aria-label="Abrir carrinho de compras">Carrinho 🛒</button>
+<button id="cart-btn" aria-label="Abrir carrinho de compras">Carrinho 🛒</button>
 
-<aside id="cart" aria-label="Carrinho de compras">
+<aside id="cart" aria-label="Carrinho de compras" role="region" aria-live="polite">
   <h2>Seu Carrinho</h2>
-  <ul id="cartItems"></ul>
-  <div class="total">Total: R$ <span id="cartTotal">0,00</span></div>
-  <div id="pixPayment" style="display:none;">
+  <ul id="cart-items">
+    <li>Seu carrinho está vazio.</li>
+  </ul>
+  <div class="total">Total: R$ <span id="cart-total">0.00</span></div>
+
+  <div id="pix-section" style="display:none;">
     <p>Pague via Pix com o QR Code:</p>
-    <img id="pixQR" src="" alt="QR Code Pix" title="Clique para copiar chave Pix" />
-    <div class="pixKey" id="pixKey" title="Clique para copiar chave Pix" tabindex="0"></div>
-    <a id="whatsappLink" href="#" target="_blank" rel="noopener noreferrer" aria-label="Enviar comprovante pelo WhatsApp">Enviar WhatsApp</a>
+    <img id="pix-qr" src="" alt="QR Code Pix" title="Clique para copiar chave Pix" />
+    <div class="pix-key" id="pix-key" tabindex="0" title="Clique para copiar chave Pix"></div>
+    <a id="whatsapp-link" href="#" target="_blank" rel="noopener noreferrer">Enviar comprovante pelo WhatsApp</a>
   </div>
-  <button id="closeCart">Fechar Carrinho</button>
+
+  <button id="close-cart" aria-label="Fechar carrinho">Fechar Carrinho</button>
 </aside>
 
 <script>
   const pixKey = 'israeldasilvasantos355@gmail.com';
 
-  const openCartBtn = document.getElementById('openCartBtn');
+  const cartBtn = document.getElementById('cart-btn');
   const cart = document.getElementById('cart');
-  const cartItemsEl = document.getElementById('cartItems');
-  const cartTotalEl = document.getElementById('cartTotal');
-  const pixPayment = document.getElementById('pixPayment');
-  const pixQR = document.getElementById('pixQR');
-  const pixKeyEl = document.getElementById('pixKey');
-  const whatsappLink = document.getElementById('whatsappLink');
-  const closeCartBtn = document.getElementById('closeCart');
+  const cartItemsEl = document.getElementById('cart-items');
+  const cartTotalEl = document.getElementById('cart-total');
+  const pixSection = document.getElementById('pix-section');
+  const pixQR = document.getElementById('pix-qr');
+  const pixKeyEl = document.getElementById('pix-key');
+  const whatsappLink = document.getElementById('whatsapp-link');
+  const closeCartBtn = document.getElementById('close-cart');
 
   let cartItems = [];
 
-  openCartBtn.addEventListener('click', () => {
+  cartBtn.addEventListener('click', () => {
     cart.classList.add('open');
-    updateCart();
+    updateCartUI();
   });
+
   closeCartBtn.addEventListener('click', () => {
     cart.classList.remove('open');
   });
@@ -333,9 +404,8 @@
       alert('Chave Pix copiada!');
     });
   });
-
   pixKeyEl.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') {
+    if(e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       navigator.clipboard.writeText(pixKey).then(() => {
         alert('Chave Pix copiada!');
@@ -344,27 +414,27 @@
   });
 
   function addToCart(name, price, details) {
-    if(cartItems.some(item => item.name === name)){
+    if(cartItems.some(item => item.name === name)) {
       alert('Produto já está no carrinho.');
       return;
     }
     cartItems.push({name, price, details});
     alert(`${name} adicionado ao carrinho!`);
-    openCartBtn.click();
-    updateCart();
+    cartBtn.click();
+    updateCartUI();
   }
 
   function removeFromCart(name) {
     cartItems = cartItems.filter(item => item.name !== name);
-    updateCart();
+    updateCartUI();
   }
 
-  function updateCart() {
+  function updateCartUI() {
     cartItemsEl.innerHTML = '';
-    if(cartItems.length === 0){
+    if(cartItems.length === 0) {
       cartItemsEl.innerHTML = '<li>Seu carrinho está vazio.</li>';
-      pixPayment.style.display = 'none';
-      cartTotalEl.textContent = '0,00';
+      cartTotalEl.textContent = '0.00';
+      pixSection.style.display = 'none';
       return;
     }
 
@@ -376,25 +446,4 @@
         <span><strong>${item.name}</strong> - R$ ${item.price.toFixed(2)}</span>
         <button class="remove" aria-label="Remover ${item.name} do carrinho">X</button>
       `;
-      li.querySelector('button').addEventListener('click', () => {
-        removeFromCart(item.name);
-      });
-      cartItemsEl.appendChild(li);
-    });
-    cartTotalEl.textContent = total.toFixed(2);
-
-    pixPayment.style.display = 'block';
-    const pixPayload = gerarPayloadPix(pixKey, total.toFixed(2), 'Pagamento Israel Store');
-    pixQR.src = `https://chart.googleapis.com/chart?cht=qr&chl=${encodeURIComponent(pixPayload)}&chs=200x200&choe=UTF-8&chld=L|2`;
-    pixKeyEl.textContent = pixKey;
-
-    const mensagem = encodeURIComponent(`Olá, já realizei o pagamento de R$ ${total.toFixed(2)} na Israel Store e quero receber meu pedido.`);
-    whatsappLink.href = `https://wa.me/5551997097814?text=${mensagem}`;
-  }
-
-  // Geração simplificada do payload Pix para QR Code
-  function gerarPayloadPix(chave, valor, descricao) {
-    // Formata o valor para o padrão Pix: 2 casas decimais
-    const valorFormatado = Number(valor).toFixed(2);
-    // Monta o payload básico para um Pix simples (sem campos extras)
-    return `00020126580014BR.GOV.BCB.PIX0114${chave.length.toString().padStart(2,'0')}${chave}520400005303BR5927Israel Store - Compra via Pix6009SAO PAULO61080540900062070503***6304${calcularCRC16(`000201265800
+      li.querySelector('button').addEventListener('click
