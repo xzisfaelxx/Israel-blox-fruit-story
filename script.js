@@ -4,7 +4,8 @@ const loginBtn = document.querySelector('.btn-login');
 const closeBtn = document.querySelector('.close');
 const loginForm = document.getElementById('loginForm');
 
-loginBtn.addEventListener('click', () => {
+loginBtn.addEventListener('click', (e) => {
+    e.preventDefault();
     loginModal.style.display = 'block';
 });
 
@@ -18,12 +19,11 @@ window.addEventListener('click', (event) => {
     }
 });
 
-// Simulação de envio do formulário de login
 loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    alert(`Tentativa de login com: ${email}`);
-    // Aqui você pode adicionar lógica para conectar a um backend
+    alert(`Login tentado com: ${email}`);
     loginModal.style.display = 'none';
+    // Para um login real, conecte a um backend aqui
 });
